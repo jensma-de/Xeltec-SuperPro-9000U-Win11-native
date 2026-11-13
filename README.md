@@ -1,30 +1,47 @@
 # Xeltek SUPERPRO 9000U on Windows 11
 
-## Start here: downloads and exact file locations
+<p align="center">
+  <img src="docs/images/prog.png" alt="SUPERPRO 9000U ready, with module 1 active" width="54%">
+</p>
 
-**Download or clone this entire repository first. Extract the GitHub ZIP before
-running anything.** The project root is the folder containing this `README.md`
+## Start here: downloads and file locations
+
+<p><br></p>
+
+> [!WARNING]
+> **PROGRAMMER MUST BE SWITCHED OFF UNTIL THIS MANUAL TELLS YOU TO SWITCH IT ON.**
+>
+> **DO NOT INSERT A CF CARD OR EPROM.**
+
+**Clone this entire repository first.**
+
+The project root is the folder containing this `README.md`
 and `Prepare-Software.cmd`. All paths below are relative to that folder.
 
-### 1. What you must download
+<p><br></p>
+<p><br></p>
 
-| Download | Exact location | Required? |
-| --- | --- | --- |
-| [Original Xeltek nsp9kw.exe](https://www.xeltek.com/software/sp9000u/nsp9kw.exe) | `downloads/nsp9kw.exe` | Yes, the original application, firmware and device libraries |
-| [Python for Windows](https://www.python.org/downloads/windows/), version 3.10 or newer | Install Python normally in Windows; do not copy the installer into this project | Yes, used once to prepare the vendor software; enable the Python launcher or add Python to PATH |
-| [Original manual](https://www.xeltek.com/software/sp9000u/SP9K-Manual.pdf) | `downloads/SP9K-Manual.pdf` | Optional reference only |
+### 1. What you must download externally
 
-If you already have `nsp9kw-202005261414.zip`, place it at
-`downloads/nsp9kw-202005261414.zip` **instead of** `downloads/nsp9kw.exe`.
-Keep exactly one of these two vendor packages in `downloads/`. The preparation
-script supports both formats. Leave the original installer unopened; the script
-reads its archive contents without running it.
+| Download | Exact location |
+| --- | --- |
+| [Original Xeltek SUPERPRO 9000U ZIP](https://www.xeltek-cn.com/getfile/sp9000u) | `downloads/nsp9kw-202005261414.zip` |
+| [Python for Windows](https://www.python.org/downloads/windows/), version 3.10 or newer | Install Python normally in Windows; do not copy the installer into this project |
 
-**No compiler, Visual Studio, WDK, pip package or separate WinUSB download is
-needed for normal installation.** The custom tools are already included, and
-Microsoft WinUSB is part of Windows 11.
+Download the original ZIP package and save it as
+**`downloads/nsp9kw-202005261414.zip`**.
 
-### 2. Files already included: keep these exact locations
+If the official download is no longer available, search for that exact filename
+in a web archive, such as the Internet Archive.
+
+**Leave the ZIP file intact. Do not unpack it manually.** The preparation script
+extracts the required files automatically without running the original installer.
+
+<p><br></p>
+<p><br></p>
+
+
+### 2. What did I download?
 
 | File | Exact location relative to the project root |
 | --- | --- |
@@ -39,6 +56,10 @@ Microsoft WinUSB is part of Windows 11.
 
 Do not move an EXE or DLL out of this layout. Downloading only individual source
 files from GitHub is insufficient; use the complete repository ZIP or a clone.
+
+<p><br></p>
+<p><br></p>
+
 
 ### 3. Prepare the original software
 
@@ -94,92 +115,45 @@ project-root/
         ...                       all extracted algorithm files
 ```
 
+<p><br></p>
+<p><br></p>
+
+
 ### 4. Connect and start
 
-Insert a CF card in module 1 before switching on the programmer. Connect power
-and USB. Run **`Windows11-Native/Setup-USB.exe` once**, accept the administrator
-prompt, then use **`Windows11-Native/Start-SUPERPRO.exe`** for normal launches.
-The application should report `Ready` without `Demo mode`.
+1. Insert a CF card in module 1.
+2. Connect power and USB.
+3. Switch on the programmer and wait a few seconds.
+4. Run **`Windows11-Native/Setup-USB.exe` once** and accept the administrator prompt.
+
+<p><br></p>
+<p><br></p>
 
 
-Native WinUSB compatibility layer for the original SUPERPRO 9000U software on
-64-bit Windows 11. The original 32-bit application communicates with Microsoft's
-WinUSB driver through a small USB bridge. No virtual machine is required.
+### 5. You're done!
 
-## Screenshots
+From now on use **`Windows11-Native/Start-SUPERPRO.exe`** for normal launches.
 
-<p align="center">
-  <img src="docs/images/title.png" alt="SUPERPRO 9000U firmware initialization" width="44%">
-  <img src="docs/images/prog.png" alt="SUPERPRO 9000U ready, with module 1 active" width="54%">
-</p>
+<p><br></p>
+<p><br></p>
 
-## Status
 
-Tested on Windows 11 Pro x64, build 26200, with a physical SUPERPRO 9000U on
-November 13, 2026:
+<p><br></p>
+<p><br></p>
 
-| Function | Result |
-| --- | --- |
-| Microsoft WinUSB installation | Passed |
-| USB interface registration and device restart | Passed |
-| Device descriptors and six bulk endpoints | Passed |
-| Firmware upload and USB communication | Passed |
-| Original application initialization | `Ready`, no Demo mode, module 1 green |
-| Modules 2, 3 and 4 | Not tested; inactive during verification |
-| Chip read, erase, program and verify | Not tested |
 
-This is an experimental compatibility project. Successful initialization does
-not establish that every chip operation or programmer module works correctly.
+## Addendum: how it works
 
-## Quick start
+The original 32-bit application communicates with Microsoft's
+WinUSB driver through a small USB bridge.
 
-Use the generated `Windows11-Native` folder as a complete package. Keep its
-`SP9000U` subfolder beside the launchers.
+## Log
 
-1. Insert at least one CF card in module 1 before powering on the programmer.
-2. Connect its power supply and USB cable, then switch it on. Leave the sockets
-   empty for the initial connection test.
-3. Disconnect other Xeltek programmers. The legacy USB IDs are not unique to
-   this model.
-4. Run `Setup-USB.exe` and accept the Windows administrator prompt. Setup selects
-   the existing Microsoft WinUSB driver and restarts only the matching USB device.
-5. Run `Start-SUPERPRO.exe` using a normal user account.
-6. Check that the application reports `Ready` without `Demo mode`.
-
-If setup reports that the device could not be restarted, unplug and reconnect
-its USB cable. If firmware startup exposes the other USB ID, close the
-application and run setup again for that device state.
-
-Without a connected programmer, choose `Cancel` at `Programmer not found` to
-open the original interface in Demo mode.
-
-## One shared log
-
-All custom components append to one UTF-8 file beside the programmer executable:
+All custom components append to one log beside the programmer executable:
 
 ```text
 Windows11-Native/SP9000U/bin/superpro9000u.log
 ```
-
-The file includes setup output, launcher events, USB opens and closes, endpoint
-information, every USB IOCTL result, warnings, errors, build output and test
-results. Each record contains a UTC timestamp, severity, component, process and
-thread IDs, and a Windows error code. Error descriptions use English.
-
-```text
-2026-11-13T10:00:00.000Z [INFO] [usb-bridge] pid=1234 tid=5678 error=0 operation=open code=0x00000000 length=0 result=1
-2026-11-13T10:00:01.000Z [ERROR] [usb-setup] pid=1234 tid=5678 error=87 Setup failed. | The parameter is incorrect.
-```
-
-Repeated runs append to the existing file. Processes use a shared file lock to
-prevent interleaved records. Firmware and chip data are not included. The
-original application's on-screen messages and Windows' own system logs remain
-separate from this custom diagnostic log. Logging self-tests deliberately emit
-synthetic errors under `logging-test`.
-
-Keep the software folder writable. No fallback log is created elsewhere.
-Previous custom logs are imported into the shared file when migrating an
-existing local installation. Logs are excluded from Git.
 
 ## Command-line diagnostics
 
