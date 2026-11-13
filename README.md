@@ -25,7 +25,7 @@ and `Prepare-Software.cmd`. All paths below are relative to that folder.
 
 | Download | Exact location |
 | --- | --- |
-| [Original Xeltek SUPERPRO 9000U ZIP](https://www.xeltek-cn.com/getfile/sp9000u) | `downloads/nsp9kw-202005261414.zip` |
+| [Original Xeltek SUPERPRO 9000U ZIP](https://www.xeltek-cn.com/getfile/sp9000u) | `downloads/nsp9kw-202005261414.zip` *: see below if you can't find the ZIP|
 | [Python for Windows](https://www.python.org/downloads/windows/), version 3.10 or newer | Install Python normally in Windows; do not copy the installer into this project |
 
 Download the original ZIP package and save it as
@@ -36,6 +36,13 @@ in a web archive, such as the Internet Archive.
 
 **Leave the ZIP file intact. Do not unpack it manually.** The preparation script
 extracts the required files automatically without running the original installer.
+
+*:
+> [!NOTE]
+> If you can only find `nsp9kw.exe`, save it as **`downloads/nsp9kw.exe`** and leave
+> it unopened. Run **`Prepare-Software.cmd`** as usual; the script also supports
+> this self-extracting archive. Keep only one package in `downloads/`: either
+> the ZIP or the EXE, not both.
 
 <p><br></p>
 <p><br></p>
