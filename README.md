@@ -142,7 +142,7 @@ From now on use **`Windows11-Native/Start-SUPERPRO.exe`** for normal launches.
 <p><br></p>
 
 
-## Addendum: how it works
+## How it works
 
 The original 32-bit application communicates with Microsoft's
 WinUSB driver through a small USB bridge.
