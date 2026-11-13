@@ -4,6 +4,8 @@
   <img src="docs/images/prog.png" alt="SUPERPRO 9000U ready, with module 1 active" width="54%">
 </p>
 
+Title pretty much says it all - use your trusty Xeltek SuperPro 9000U on 64bit Windows 11.
+
 ## Start here: downloads and file locations
 
 <p><br></p>
